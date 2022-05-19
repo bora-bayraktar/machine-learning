@@ -17,3 +17,4 @@ Koç University Machine Learning course projects. Course focuses on both mathema
 - Nonparametric Regression
 - Decision Tree Regression
 - Support Vector Machine Classification
+- Linear Discriminant Analysis
