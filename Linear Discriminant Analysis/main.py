@@ -21,28 +21,12 @@ K = np.max(y_training)
 N = x_training.shape[0]
 D = x_training.shape[1]
 
-# Calculate class means
-means = []
-for c in range(K):
-    means.append(np.mean(x_training[y_training == c + 1], axis=0, keepdims=True))
-
 mean = np.mean(x_training, axis=0, keepdims=True)
-
-# means = np.asarray([np.mean(x_training[y_training == c + 1], axis=0, keepdims=True) for c in range(K)])
+means = np.asarray([np.mean(x_training[y_training == c + 1], axis=0, keepdims=True) for c in range(K)])
 
 # Calculate SW and SB
-# SW = np.sum(np.asarray([np.matmul((x_training[y_training == c + 1] - means[c]).T, x_training[y_training == c + 1] - means[c]) for c in range(K)]), axis=0)
-# SB = np.sum(np.asarray([np.matmul((means[c] - mean).T, means[c] - mean) * len(x_training[y_training == c + 1]) for c in range(K)]), axis=0)
-
-array = []
-for c in range(K):
-    array.append(np.matmul((x_training[y_training == c + 1] - means[c]).T, x_training[y_training == c + 1] - means[c]))
-SW = np.sum(array, axis=0)
-
-array = []
-for c in range(K):
-    array.append(np.matmul((means[c] - mean).T, means[c] - mean) * len(x_training[y_training == c + 1]))
-SB = np.sum(array, axis=0)
+SW = np.sum(np.asarray([np.matmul((x_training[y_training == c + 1] - means[c]).T, x_training[y_training == c + 1] - means[c]) for c in range(K)]), axis=0)
+SB = np.sum(np.asarray([np.matmul((means[c] - mean).T, means[c] - mean) * len(x_training[y_training == c + 1]) for c in range(K)]), axis=0)
 
 print(SW[0:4,0:4])
 print(SB[0:4,0:4])
@@ -69,7 +53,7 @@ plt.xlabel("Component#1")
 plt.ylabel("COmponent#2")
 plt.xlim(-6, 6)
 plt.ylim(-6, 6)
-# plt.show()
+plt.show()
 
 # Plot test data
 Z = np.matmul(x_test - np.mean(x_test, axis=0), vectors[:, [0, 1]])
@@ -85,7 +69,7 @@ plt.xlabel("Component#1")
 plt.ylabel("COmponent#2")
 plt.xlim(-6, 6)
 plt.ylim(-6, 6)
-# plt.show()
+plt.show()
 
 # Confusion matrix for training data
 Z_training = np.matmul(x_training - np.mean(x_training, axis=0), vectors[:, :9])
