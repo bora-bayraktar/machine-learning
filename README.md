@@ -18,3 +18,5 @@ Koç University Machine Learning course projects. Course focuses on both mathema
 - Decision Tree Regression
 - Support Vector Machine Classification
 - Linear Discriminant Analysis
+- Expectation-Maximization Clustering
+- Spectral Clustering
